@@ -218,12 +218,7 @@ step 5 - Delete from cte where row number is greater than 1
 
 -- Q3) Difference between union and union all
 
-USE SAKILA;
-
-SELECT *
-FROM student
-union
-student;    
+    
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 -- Ankit bhansal - https://www.youtube.com/watch?v=xMWEVFC4FOk
