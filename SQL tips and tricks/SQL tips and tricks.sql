@@ -227,6 +227,109 @@ step 5 - Delete from cte where row number is greater than 1
 
 -- rank() - produces a rank to a selected column 
 
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+-- Ankit bhansal - https://www.youtube.com/watch?v=xMWEVFC4FOk
+
+-- Q5) Employee who are not present in the department
+
+
+-- Table creation code used in the video :
+
+use sakila;
+show tables ;
+Desc emp;
+create table emp(
+emp_id int,
+emp_name varchar(20),
+department_id int,
+salary int,
+manager_id int,
+emp_age int);
+
+insert into emp
+values
+(1, 'Ankit', 100,10000, 4, 39);
+insert into emp
+values (2, 'Mohit', 100, 15000, 5, 48);
+insert into emp
+values (3, 'Vikas', 100, 10000,4,37);
+insert into emp
+values (4, 'Rohit', 100, 5000, 2, 16);
+insert into emp
+values (5, 'Mudit', 200, 12000, 6,55);
+insert into emp
+values (6, 'Agam', 200, 12000,2, 14);
+insert into emp
+values (7, 'Sanjay', 200, 9000, 2,13);
+insert into emp
+values (8, 'Ashish', 200,5000,2,12);
+insert into emp
+values (9, 'Mukesh',300,6000,6,51);
+insert into emp
+values (10, 'Rakesh',300,7000,6,50);
+
+-- Create table dept -
+
+CREATE TABLE dept(
+  dep_id int
+, dep_name varchar(20)
+);
+
+-- describe bothn the created tables 
+DESC dept;
+SELECT * from dept;
+
+-- INSERT values int dep table 
+INSERT INTO dept(
+dep_id, dep_name)
+VALUES 
+  (100, "Analytics")
+, (300, "IT");
+
+-- Give outpput for all the values of emplyoyees who's dept ID does not exist in the dept table
+-- Method 1 - subquery consumes a lot of memory
+SELECT * 
+FROM EMP 
+WHERE department_id not in (SELECT dep_id from dept);
+
+
+-- Method 2 - Efficient method with less memory consumption
+SELECT e.*, d.dep_id
+FROM emp e
+LEFT JOIN dept d
+ON e.department_id = d.dep_id
+WHERE d.dep_id is NULL;
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+-- Ankit bhansal - https://www.youtube.com/watch?v=xMWEVFC4FOk
+
+-- Q6) Second highest salary in emp table 
+
+/* 
+Method to dolve this problem -  
+
+step 1) Identify the column on which you want ot find a dept id 
+step 2) Once Identified find a rank number over partition by on the identified column
+step 3) Select all column outputs for it 
+step 4)
+*/
+
+SELECT * 
+FROM (
+SELECT *, DENSE_RANK() over(PARTITION BY department_id ORDER BY salary desc) as rn
+FROM emp ) emp_rn
+WHERE rn = 2;
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+-- Ankit bhansal - https://www.youtube.com/watch?v=xMWEVFC4FOk
+
+-- Q7) Find all the transactions by shilpa
+
+
+
+
+
     
 
 
