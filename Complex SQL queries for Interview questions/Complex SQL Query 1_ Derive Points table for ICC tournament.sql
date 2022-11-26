@@ -88,5 +88,50 @@ order by Number_of_matches_won desc;
 -- Practise 2) 
 -- Breakm down the logic , extremely well and then attempt 
  
+ /*
+Input table contains following tables -
+Team_1
+Team2
+Winner 
+
+
+Expected output table -
+-- Find the No_of matches won by a team 
+-- Find the number of matches lost by a team 
+
+Breaking down the solution
+-- 1) Derive a table containing a win_flag for all the teams 
+        How to derive this ?
+            -- IF Team_1 = Winner then win flag is 1 else 0
+            -- If Team_2 = winnar then win_flag is 1 else 0
+-- 2) Output a column containg a count for all wins as No_of_matches_won
+-- 3) Output a column containg no_of_matches_lost
+-- 4) Calculate the points scored by each team, logic - no_of_wins * 2
+ 
+ */
+
+
+SELECT * 
+FROM icc_world_cup;       -- Check for all existing data in all columns if icc_world_cup table 
+
+-- Deriving step 1)
+SELECT
+   Team_name
+ , count(1) as No_of_matches_played
+ , sum(win_flag) as No_of_matches_won
+ , count(1) - sum(win_flag) as No_of_matches_lost
+ , sum(win_flag) * 2 as total_points_scored
+FROM 
+    (SELECT 
+    Team_1 as Team_name                                        -- Team_1 and team_2 will be outputed as one column with alias Team_name
+    , CASE WHEN Team_1 = Winner THEN 1 ELSE 0 END AS Win_flag  -- Creating a win_flag if Team_1 = winner
+    FROM icc_world_cup
+    Union all   
+    SELECT                                                      -- Union data from both the columns 
+    Team_2 as Team_name                                         -- Team_1 and team_2 will be outputed as one column with alias Team_name
+    , CASE WHEN Team_2 = Winner THEN 1 ELSE 0 END AS Win_flag   -- Creating a win_flag if Team_2 = winner
+    FROM icc_world_cup) as Team_win_info                        -- In this sub query with alias as "Team_win_info" we understand that Team_name and win_flag can be taken as output columns 
+GROUP BY Team_name
+ORDER BY No_of_matches_won desc;
 
 
