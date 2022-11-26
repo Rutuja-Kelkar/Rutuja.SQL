@@ -43,13 +43,15 @@ No_of_wins     - int (This is the number of matches won by a team )
 No_of_losses   - int (This is the number of losses by a team )
 
 Approach to solve this problem 
-Step 1 ) Derive a table containing folowing information 
+Step 1 ) Derive a table containing folowing information regarding - a win_flag
         
 
 
 
 */
 
+
+-- Resultant code : 
 select team_name, count(1) as Number_of_matches_played, sum(WIN_FLAG) as no_of_matches_won, count(1) - sum(WIN_FLAG) as NO_of_matches_lost
 from(
 SELECT team_1 AS team_name, CASE WHEN Team_1 = Winner THEN 1 ELSE 0 END AS WIN_FLAG
@@ -62,9 +64,29 @@ Group by team_name
 order by no_of_matches_won desc;
 
 
-
 -- Practise 1)
+Select * from icc_world_cup;
+
+-- Addition in the code - Output coloumn - Points_scored
+Select Team_name
+, count(1) as Number_of_mactches_played
+, sum(win_flag) as Number_of_matches_won
+, count(1) - sum(win_flag) as Number_of_matches_lost
+, sum(win_flag) * 2 as Points_scored 
+from
+(
+SELECT Team_1 as Team_name, CASE WHEN Team_1 = Winner then 1 else 0 end as win_flag
+from icc_world_cup
+union all
+Select Team_2 as Team_name, CASE WHEN Team_2 = Winner then 1 else 0 end as win_flag
+from icc_world_cup
+) as Count_win_losses
+Group by team_name
+order by Number_of_matches_won desc;
 
 
+-- Practise 2) 
+-- Breakm down the logic , extremely well and then attempt 
+ 
 
 
