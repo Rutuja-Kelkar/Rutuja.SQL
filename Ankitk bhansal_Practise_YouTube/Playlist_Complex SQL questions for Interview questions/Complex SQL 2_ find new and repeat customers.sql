@@ -4,13 +4,14 @@ ANKIT BHANSAL YOUTUV=BE PLAYLIST
 
 
 GIVEN DATABSE AND TABLE :
--- "customer_orders" in "temp" database
+-- Table name : "customer_orders" 
+-- database name : "temp"
 
 
 PROBLEM DESCRIPTION :
--- Consider you have a website and you want to see everyday how many new customer andm ow many repeat customers are coming 
+-- Consider you have a website, you want to calculate how many are new customer and how many are repeat customers that are visiting your website on daily basis
 -- use data set "customer_orders"
--- Given data set contains follwing columns 
+-- Given data set contains following columns 
       order_id
     , customer_id
     , order_date
@@ -34,7 +35,8 @@ Step 2) Derive customer_id and "first_visit_date" from customer_orders table
         -- Logic for above - min(order_date)
         -- create a virtual table using cte with as first_visit_virtual_table
 Step 3) Join above table with original "customer_orders" table
-Step 4) 
+Step 4) Compare  first_visit_date withn order_date.
+        if first_visit_date = order_date 
 
 
 PROBLEMS / ERROS FACED WHILE SOLVING THE ORIGINAL CODE 
@@ -67,13 +69,63 @@ VALUES
 ;
 
 -- LOGIC CODE
-WITH first_visit_virtual_table AS
-(SELECT 
+-- The code is broken down into may parts for undersatnding
+-- Below code creates a CTE "first_visit_virtual_table" to identify first visit date of a customer having a customer id
+WITH first_visit_virtual_table AS                     
+    (
+    SELECT 
       customer_id
     , min(order_date) as first_visit_date
-FROM
-customer_orders
-group by customer_id)
+    FROM
+    customer_orders
+    group by customer_id
+    )
+    
+-- Below query retrives the "customer_id" and "first_visit_date" of a customer from cte "first_visit_virtual_table "
+SELECT  
+      customer_id 
+    , first_visit_date
+from first_visit_virtual_table;
+
+
+-- With the above code, an output table containing customer_id and its corresponding first visist date is generated 
+
+
+--  Now, both tables 
+    -- customer_orders
+    -- first_visit_virtual_table can be joined on customer_id
+    
+-- why to join the table ? So that we can companre first_visit_date and order
+
+-- Retriving values og both the tables 
+WITH first_visit_virtual_table AS                     
+    (
+    SELECT 
+      customer_id
+    , min(order_date) as first_visit_date
+    FROM
+    customer_orders
+    group by customer_id
+    )
+
+    
+SELECT 
+    co.order_date
+    , fv.first_visit_date
+    , sum(CASE WHEN co.order_date = fv.first_visit_date Then 1 else 0 end) as new_customer_flag
+    , sum(CASE WHEN co.order_date != fv.first_visit_date Then 1 else 0 end) as repeat_customer_flag
+from customer_orders as co
+inner join first_visit_virtual_table fv
+on co.customer_id = fv.customer_id
+group by co.order_date
+order by co.customer_id; 
+
+
+
+-- Practise 1) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 

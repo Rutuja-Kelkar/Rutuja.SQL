@@ -64,7 +64,7 @@ Group by team_name
 order by no_of_matches_won desc;
 
 
--- Practise 1)
+-- Practise 1) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Select * from icc_world_cup;
 
 -- Addition in the code - Output coloumn - Points_scored
@@ -85,7 +85,14 @@ Group by team_name
 order by Number_of_matches_won desc;
 
 
--- Practise 2) 
+
+
+
+
+
+
+
+-- Practise 2) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Breakm down the logic , extremely well and then attempt 
  
  /*
@@ -96,6 +103,7 @@ Winner
 
 
 Expected output table -
+-- Find total matches played by a team 
 -- Find the No_of matches won by a team 
 -- Find the number of matches lost by a team 
 
@@ -191,3 +199,47 @@ SELECT
   FROM icc_world_cup) AS win_table
   Group by Team_name
   order by no_of_matches_won desc;
+  
+  
+  
+  
+-- Practise 3) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-- select "temp" database :
+USE temp;
+
+
+-- find the description of the table to be used :
+DESC icc_world_cup; 
+
+
+-- Retrive all rows and columns of table "icc_world_cup" :
+SELECT *
+FROM icc_world_cup;
+
+
+-- Solution code logic 
+SELECT 
+      Team_name
+    , count(1) as Total_no_matches_played
+    , count(win_flag) as Total_no_of_matches_won
+    , count(1) - count(win_flag) as Total_no_of_matches_lost
+    , win_flag * 2 as Total_points_scored
+FROM
+(
+SELECT 
+      Team_1  as Team_name
+    , CASE WHEN Team_1 = winner then 1 else 0 end as Win_flag
+FROM icc_world_cup
+union all 
+SELECT 
+      Team_2  as Team_name
+    , CASE WHEN Team_2 = winner then 1 else 0 end as Win_flag
+FROM icc_world_cup
+) as win_table
+GROUP BY Team_name
+Order by Total_no_of_matches_won desc
+;
+
+
