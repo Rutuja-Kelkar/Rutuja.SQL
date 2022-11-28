@@ -135,3 +135,59 @@ GROUP BY Team_name
 ORDER BY No_of_matches_won desc;
 
 
+
+-- Practise 3)
+/* Given table - 
+Team_1 varchar
+Team_2 varchar
+Winner varchar
+
+
+Expected output 
+-- Find the No_of matches won by a team 
+-- Find the number of matches lost by a team 
+-- Find the total points scored by a team 
+
+
+
+Steps and logic to solve this problem 
+step 1) Derive a table with win_flag
+Step 1.1) Deriving a win_flag
+        -- If winner == Team_1 then 1 else 0 as win_flag
+        -- If winner == team_2 then 1 elae 0 as win_flag
+        -- Alias Team1_and Team_2 as Team_name
+Step 2) Use the above query as a sub select query 
+Step 3) Derive Team_name
+               , Total_no_of_matches_played
+               , No_of_matches_won
+               , No_of_matches_lost
+               , total_points_scored 
+        using the subquery
+Step 4) Group  by Team_name 
+Step 5) Order by No_og matches_won
+*/
+
+-- Code for above logic 
+use temp;                                    -- "temp" database selected
+desc icc_world_cup;                          -- desccription of "icc_worlld_cup" table
+
+
+
+SELECT 
+      Team_name
+    , count(1) as Total_no_of_matches_played
+    , sum(win_flag) as No_of_matches_won
+    , count(1) - sum(win_flag) as No_of_matches_lost
+    , sum(win_flag) * 2 as total_points_scored
+FROM
+(SELECT 
+  Team_1 as Team_name
+  , CASE WHEN team_1 = winner THEN 1 ELSE 0 END as win_flag
+  FROM icc_world_cup
+UNION ALL
+SELECT
+  Team_2 as Team_name
+  , CASE WHEN team_2 = winner THEN 1 ELSE 0 END as win_flag
+  FROM icc_world_cup) AS win_table
+  Group by Team_name
+  order by no_of_matches_won desc;
