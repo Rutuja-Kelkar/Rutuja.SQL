@@ -14,6 +14,7 @@ Winner Varchar(20)
 );
 
 -- Code to describe the created tables 
+use temp;
 desc icc_world_cup;
 
 
@@ -38,7 +39,7 @@ Winner   varchar
 
 Expected output table -
 Team_Name  - varchar (contains name of the team)
-Matches_Played - int (This is the number of matches played by the respective team)
+Total_Matches_Played - int (This is the total number of matches played by the respective team)
 No_of_wins     - int (This is the number of matches won by a team )
 No_of_losses   - int (This is the number of losses by a team )
 
@@ -239,7 +240,41 @@ SELECT
 FROM icc_world_cup
 ) as win_table
 GROUP BY Team_name
-Order by Total_no_of_matches_won desc
-;
+Order by Total_no_of_matches_won desc;
+
+
+-- Practise 4) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/* Solution to solve the problem :
+
+Step 1) Given a table containing Team 1, Team 2 and winner 
+step 2 ) Derive a table containing Team_name and win_flag by comparing :
+    -- Team_1 with winner column using CASE statement 
+    -- Team_2 with winner column using CASE statement 
+    
+Step 3) Use that table as a sub query to get the rewuired output
+    */
+    
+With Win_table as
+(SELECT 
+    Team_1 AS Team_name
+    , CASE WHEN team_1 = winner THEN 1 ELSE 0 END as Win_flag
+FROM icc_world_cup
+union all
+SELECT
+    Team_2 AS Team_name
+    , CASE WHEN team_2 = winner THEN 1 ELSE 0 END as Win_flag
+FROM icc_world_cup)
+
+Select 
+      Team_name
+    , Count(1) as Total_matches_played
+    , Count(Win_flag) as Total_matches_won
+    , Count(1) - count(Win_flag) as Total_matches_lost
+    , count(Win_flag) * 2 as Total_points_scored
+FROM Win_table
+Group by Team_name
+order by Total_matches_won desc;
+
+
 
 

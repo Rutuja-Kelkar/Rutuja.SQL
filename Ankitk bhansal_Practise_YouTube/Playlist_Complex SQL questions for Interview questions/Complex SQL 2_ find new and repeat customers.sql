@@ -29,7 +29,7 @@ EXPECTED OUTPUT :
    
 
 
-LOGOCAL STEPS TO SOLVE ABOVE PROBLEM :
+LOGICAL STEPS TO SOLVE ABOVE PROBLEM :
 Step 1) Find the date of website launch, assume 2022-01-01 from given date
 Step 2) Derive customer_id and "first_visit_date" from customer_orders table
         -- Logic for above - min(order_date)
@@ -123,6 +123,9 @@ order by co.customer_id;
 
 
 -- Practise 1) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USE Temp;
+SELECT *
+FROM customer_orders;
 
 
 
