@@ -34,7 +34,7 @@ EXPECTED OUTPUT :
     
 LOGICAL STEPS TO SOLVE ABOVE PROBLEM BEFORE WATCHING THE SOLUTION :
 -- Ideally one one row should exist for one person, but there exist multiple with different email ids 
--- 
+
 */
 
 
@@ -69,3 +69,9 @@ values
 -- Retrive all the inserted values 
 SELECT *
 FROM entries;
+
+
+
+
+
+
