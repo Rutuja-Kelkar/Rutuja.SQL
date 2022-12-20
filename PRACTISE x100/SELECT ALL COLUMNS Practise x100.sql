@@ -1,0 +1,604 @@
+/*Practise of 
+
+"Retrive all the columns from the table_name" 
+x100 times
+
+*/
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME 
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME 
+SELECT * 
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME 
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME 
+SELECT * 
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT * 
+FROM TABLE_NAME
+SELECT *
+FROM TABLE_NAME 
+SELECT *
+FROM TABLE_NAME
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
