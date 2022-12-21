@@ -4,6 +4,10 @@
 x100 times
 
 */
+
+
+
+
 SELECT *
 FROM TABLE_NAME
 SELECT *

@@ -6,7 +6,7 @@ Ankit bhansal YT - https://www.youtube.com/watch?v=dOLBRfwzYcU&list=PLBTZqjSKn0I
 -- Select database 
 Use sakila;
 drop table events;
-
+show tables;
 
 -- Create Tables to solve the problem 
 CREATE TABLE EVENTS(
@@ -59,7 +59,7 @@ RENAME COLUMN ID TO EVENTS_ID;
 
 
 /*Description of question to solve 
-Write a query to findnumber of gold medals per swimmer who won only gold medals 
+Write a query to find number of gold medals per swimmer who won only gold medals 
 
 Input table contains - 
 EVENT_ID 
@@ -79,7 +79,7 @@ Step 1) Retrive all the records who won gold medal using  having cluase
 
 */
 
--- Solution using sub query
+-- METHOD 1 - Solution using sub query
 SELECT 
     GOLD as PLAYER_NAME,
     count(1) as No_of_gold_medals
@@ -107,12 +107,12 @@ What happens when above sub query is used
 
 */
 
--- Method 2 using cte funtion (written without reference)
+-- Method 2 - using cte funtion (written without reference)
 
 
 
 
--- Practise 1  -- USING SUB QUERY (written own my own without reference)
+-- Practise 1  -- USING SUB QUERY (written own my own without reference) ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT 
     GOLD AS PLAYER_NAME_WON_GOLD, 
     COUNT(1) AS COUNT_OF_GOLD_WON
@@ -126,7 +126,7 @@ WHERE GOLD NOT IN
 GROUP BY PLAYER_NAME_WON_GOLD;
 
 
--- Practise 1 using CTE function
+-- Practise 1 using CTE function ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WITH MEDALS AS 
 (
@@ -143,5 +143,59 @@ SELECT
     FROM medals 
     group by Player_that_won_gold
     having count(distinct medal_type)=1 and max(medal_type) = 'gold';
+    
 
+
+
+-- 21TH DEC 2022 5:30:00 AM Practise 2 using SUB QUERY  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+Steps to solve this using sub query 
+
+1) select the gold medal */
+
+SELECT *
+FROM EVENTS;
+
+SELECT
+      GOLD AS PLAYER_NAME
+    , COUNT(1) AS NO_OF_GOLD_WON
+FROM EVENTS
+WHERE GOLD NOT IN 
+    (
+        SELECT SILVER FROM EVENTS 
+        UNION ALL
+        SELECT BRONZE FROM EVENTS
+    )
+GROUP BY PLAYER_NAME;
+
+
+
+
+
+-- 21TH DEC 2022 5:30:00 AM Practise 2 using CTE function ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT *
+FROM EVENTS;
+
+
+
+WITH EVENT_CTE AS 
+(
+    SELECT GOLD AS PLAYER_NAME, 
+    'GOLD' AS MEDAL_TYPE FROM EVENTS 
+UNION ALL
+    SELECT SILVER AS PLAYER_NAME, 
+    'SILVER' AS MEDAL_TYPE FROM EVENTS 
+UNION ALL
+    SELECT BRONZE AS PLAYER_NAME, 
+    'BRONZE' AS MEDAL_TYPE FROM EVENTS 
+)
+
+SELECT
+      PLAYER_NAME
+    , COUNT(1) AS NO_OF_GOLD_WON
+FROM EVENT_CTE
+GROUP BY PLAYER_NAME
+HAVING COUNT(DISTINCT MEDAL_TYPE=1)
+AND MAX(MEDAL_TYPE)='GOLD';
 
